@@ -1,22 +1,30 @@
 #pragma once
 
-class Stack{
-	private:
-		int* items;
-		int topElement;
-		int size;
-	public:
-		// Constructor
-		Stack();
+class Stack
+{
+private:
+	int *items;
+	int topElement;
+	size_t size;
 
-		// Copy Constructor
-		Stack(const Stack &source);
+public:
+	// Constructor
+	Stack();
 
-		// Destructor
-		~Stack();
+	// Copy Constructor
+	Stack(const Stack &source);
 
-		void push(int element);
-		int pop();
-		int top() const;
-		bool isEmpty() const;
+	// Destructor
+	~Stack();
+
+	// Asignment Operator
+	Stack &operator=(const Stack &rhs);
+
+	void errorDelete();
+	void memAlloc(size_t sizeAlloc);
+	void printStack() const;
+	void push(int element);
+	int pop();
+	int top();
+	bool isEmpty() const;
 };
