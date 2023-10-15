@@ -1,73 +1,42 @@
 #include <stdlib.h>
-#include <math.h>
-#include <stdio.h>
 #include <iostream>
 #include "Stack.h"
 
-
 int main(int argc, char *argv[])
-{ 
+{
+	Stack s1;
+	s1.push(1);
+	printf("s1.push(1), state of s1: \n");
+	s1.printStack();
+	s1.push(2);
+	printf("\ns1.push(2), state of s1: \n");
+	s1.printStack();
+	s1.push(3);
+	printf("\ns1.push(3), state of s1: \n");
+	s1.printStack();
 
-	// STANDARD TEST
-	Stack stack;
-	int choice;
-	int input;
-	bool loopBool = true;
-	while(loopBool)
-	{
-		printf("Press 1 to test push\nPress 2 to test pop\nPress 3 to test isEmpty");
-		printf("\nPress 4 to test top\nPress 5 to turn off program\n");
-		scanf("%d", &choice);
-		switch(choice)
-		{
-			case 1:
-			{
-				printf("\nInput the number to be added to stack: ");
-				scanf("%d", &input);
-				printf("%d", input);
-				stack.push(input);
-				break;
-			}
-			case 2:
-			{
-				printf("\nPopped element: %d", stack.pop());
-				break;
-			}
-			case 3:
-			{
-				printf("\nisEmpty result: %d", stack.isEmpty());
-				break;
-			}
-			case 4:
-			{
-				printf("\nTop element: %d", stack.top());
-				break;
-			}
-			case 5:
-			{
-				loopBool = false;
-				break;
-			}
-			default:
-			{
-				printf("\nWrong element sorry.");
-			}
-		}
-		printf("\n");
-	}
+	Stack s2(s1);
+	printf("\ns2(s1), state of s2: \n");
+	s2.printStack();
 
+	Stack s3 = s1;
+	printf("\ns3 = s1: state of s3: \n");
+	s3.printStack();
 
-	// TEST OF COPYING
-	Stack stack1;
+	Stack s4;
+	s4.push(10);
+	printf("\ns4.push(10), state of s4: \n");
+	s4.printStack();
+	s4 = s1;
+	printf("\ns4 = s1, state of s4: \n");
+	s4.printStack();
+	s4 = s4;
+	printf("\ns4 = s4, state of s4: \n");
+	s4.printStack();
 
-	stack1.push(5);
-	stack1.push(7);
-	std::cout<<stack1.top()<<std::endl;
+	printf("\nTesting pop:\nPopped element from s1: %d, state of s1 after pop: \n", s1.pop());
+	s1.printStack();
 
-	Stack stack2(stack1);
-
-	std::cout<<stack2.pop()<<std::endl;
-	std::cout<<stack2.pop()<<std::endl;
-
+	printf("\n");
 	return 0;
-} 
+}
