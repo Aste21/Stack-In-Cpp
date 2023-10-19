@@ -1,5 +1,7 @@
 #pragma once
 
+// MOVE TO PRIVATE, SEPERATE MAIN INTO FUNCTIONS, CHANGE THE operator= WAY OF ALLOCATING MEMOry
+
 class Stack
 {
 private:
