@@ -3,29 +3,14 @@
 #include <stdint.h>
 #include "Stack.h"
 
-// ASK WHICH IS BETTER #define vs const int
-// #define DOUBLE_TRESHOLD 4096
-// #define SIZE_INCREMENT 128
-// #define TOP_BASIC_VALUE -1
-
 const int DOUBLE_TRESHOLD = 4096;
 const int SIZE_INCREMENT = 128;
 const int TOP_BASIC_VALUE = -1;
 
-// Old Constructor
-// Stack::Stack()
-// {
-// 	size = 0;
-// 	items = NULL;
-// 	topElement = TOP_BASIC_VALUE;
-// }
-
-// Better way as the top method first initializes into smth random - > changes into basic value, wheras the bottom method initializes right into the correct method.
 Stack::Stack()
 	: items{NULL}, topElement{TOP_BASIC_VALUE}, size{0} {}
 
 // Copy Constructor
-// Shalow copy - copy pointer vs deep copy - copy of the pointed data
 Stack::Stack(const Stack &source)
 	: items{NULL}, topElement{source.topElement}, size{source.size}
 {
@@ -60,23 +45,18 @@ Stack &Stack::operator=(const Stack &rhs)
 	{
 		return *this;
 	}
-
-	// deallocate the memory
-	if (size > 0)
+	
+	if(size < rhs.size)
 	{
-		free(items);
+		memAlloc(rhs.size);
+		size = rhs.size;
 	}
-	items = NULL;
-
-	// allocate the memory
-	memAlloc(rhs.size);
 
 	// copy the data
 	for (int i = 0; i <= rhs.topElement; i++)
 	{
 		items[i] = rhs.items[i];
 	}
-	size = rhs.size;
 	topElement = rhs.topElement;
 
 	return *this;
