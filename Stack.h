@@ -1,7 +1,5 @@
 #pragma once
 
-// MOVE TO PRIVATE, SEPERATE MAIN INTO FUNCTIONS, CHANGE THE operator= WAY OF ALLOCATING MEMOry
-
 class Stack
 {
 private:
@@ -9,6 +7,8 @@ private:
 	int topElement;
 	size_t size;
 
+	void errorDelete();
+	void memAlloc(size_t sizeAlloc);
 public:
 	// Constructor
 	Stack();
@@ -22,8 +22,6 @@ public:
 	// Asignment Operator
 	Stack &operator=(const Stack &rhs);
 
-	void errorDelete();
-	void memAlloc(size_t sizeAlloc);
 	void printStack() const;
 	void push(int element);
 	int pop();
