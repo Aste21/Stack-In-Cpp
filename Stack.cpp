@@ -14,14 +14,12 @@ Stack::Stack()
 Stack::Stack(const Stack &source)
 	: items{NULL}, topElement{source.topElement}, size{source.size}
 {
-	int *newItems = NULL;
-	newItems = (int *)realloc(items, size * sizeof(int));
-	if (newItems == NULL)
+	items = (int *)realloc(items, size * sizeof(int));
+	if (items == NULL)
 	{
 		printf("Memory allocation failed during push operation.\n");
 		abort();
 	}
-	items = newItems;
 	for (int i = 0; i < int(source.size); i++)
 	{
 		items[i] = source.items[i];
@@ -45,11 +43,11 @@ Stack &Stack::operator=(const Stack &rhs)
 	{
 		return *this;
 	}
-	
-	if(size < rhs.size)
+
+	if(static_cast<int>(size) < rhs.topElement + 1)
 	{
-		memAlloc(rhs.size);
-		size = rhs.size;
+		memAlloc(rhs.topElement + 1);
+		size = rhs.topElement + 1;
 	}
 
 	// copy the data
